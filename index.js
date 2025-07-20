@@ -1,22 +1,21 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+
 const app = express();
 const port = process.env.PORT || 8080;
 
-// Enable CORS and JSON parsing
 app.use(cors());
 app.use(express.json());
 
-// --- Test Route ---
+// Test route
 app.get('/hello', (req, res) => {
   res.json({ message: 'Hello from Railway!' });
 });
 
-// --- Login Route ---
+// Login route
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  // 🔐 Simple dummy authentication
   if (username === 'admin' && password === '1234') {
     res.json({ success: true });
   } else {
@@ -24,7 +23,6 @@ app.post('/login', (req, res) => {
   }
 });
 
-// --- Start the server ---
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
